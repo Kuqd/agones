@@ -34,6 +34,7 @@ import (
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/rest"
+	"agones.dev/agones/pkg/gameserversets"
 )
 
 const (
@@ -124,7 +125,8 @@ func main() {
 	kubeInformationFactory := informers.NewSharedInformerFactory(kubeClient, 30*time.Second)
 
 	wh := webhooks.NewWebHook(certFile, keyFile)
-	c := gameservers.NewController(wh, minPort, maxPort, sidecarImage, alwaysPullSidecar, kubeClient, kubeInformationFactory, extClient, agonesClient, agonesInformerFactory)
+	gsController := gameservers.NewController(wh, minPort, maxPort, sidecarImage, alwaysPullSidecar, kubeClient, kubeInformationFactory, extClient, agonesClient, agonesInformerFactory)
+	gssController := gameserversets.NewController(wh, kubeClient, extClient, agonesClient, agonesInformerFactory)
 
 	stop := signals.NewStopChannel()
 
@@ -136,11 +138,20 @@ func main() {
 			logger.WithError(err).Fatal("could not run webhook server")
 		}
 	}()
+	go func() {
+		err = gsController.Run(2, stop)
+		if err != nil {
+			logger.WithError(err).Fatal("Could not run gameserver controller")
+		}
+	}()
+	go func() {
+		err = gssController.Run(2, stop)
+		if err != nil {
+			logger.WithError(err).Fatal("Could not run gameserverset controller")
+		}
+	}()
 
-	err = c.Run(2, stop)
-	if err != nil {
-		logger.WithError(err).Fatal("Could not run gameserver controller")
-	}
-
-	logger.Info("Shut down gameserver controller")
+	<-stop
+	logger.Info("Shut down agones controller")
 }
+

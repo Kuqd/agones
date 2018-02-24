@@ -18,7 +18,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-	"time"
 
 	"agones.dev/agones/pkg/apis/stable"
 	stablev1alpha1 "agones.dev/agones/pkg/apis/stable/v1alpha1"
@@ -41,7 +40,6 @@ import (
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
 	"k8s.io/apimachinery/pkg/labels"
 	"k8s.io/apimachinery/pkg/util/intstr"
-	"k8s.io/apimachinery/pkg/util/wait"
 	"k8s.io/client-go/informers"
 	"k8s.io/client-go/kubernetes"
 	"k8s.io/client-go/kubernetes/scheme"
@@ -231,7 +229,7 @@ func (c Controller) Run(threadiness int, stop <-chan struct{}) error {
 	}()
 	defer c.server.Close() // nolint: errcheck
 
-	err := crd.WaitForEstablishedCRD(c.crdGetter, "gameservers.stable.agones.dev", c.logger)
+	err := crd.WaitForEstablishedCRD(c.crdGetter, "gameservers."+stable.GroupName, c.logger)
 	if err != nil {
 		return err
 	}

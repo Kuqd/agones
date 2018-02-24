@@ -125,6 +125,33 @@ spec:
                   minimum: 1
                   maximum: 2147483648
 ---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  name: gameserversets.stable.agones.dev
+spec:
+  group: stable.agones.dev
+  version: v1alpha1
+  scope: Namespaced
+  names:
+    kind: GameServerSet
+    plural: gameserversets
+    shortNames:
+    - gss
+    singular: gameserverset
+  validation:
+    openAPIV3Schema:
+      properties:
+        spec:
+          required:
+            - replicas
+            - template
+          properties:
+            replicas:
+              type: integer
+              minimum: 0
+            template:
+---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
@@ -272,8 +299,8 @@ rules:
   resources: ["customresourcedefinitions"]
   verbs: ["get"]
 - apiGroups: ["stable.agones.dev"]
-  resources: ["gameservers"]
-  verbs: ["delete", "get", "list", "update", "watch"]
+  resources: ["gameservers", "gameserversets"]
+  verbs: ["create", "delete", "get", "list", "update", "watch"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
