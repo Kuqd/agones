@@ -62,8 +62,8 @@ type GameServerSetSpec struct {
 type GameServerSetStatus struct {
 	// Replicas the total number of current GameServer replicas
 	Replicas int32 `json:"replicas"`
-	// HealthyReplicas are the number of healthy GameServer replicas
-	HealthyReplicas int32 `json:"healthyReplicas"`
+	// ReadyReplicas are the number of Ready GameServer replicas
+	ReadyReplicas int32 `json:"readyReplicas"`
 }
 
 // GameServer returns a single GameServer derived

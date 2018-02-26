@@ -38,6 +38,7 @@ import (
 	typedcorev1 "k8s.io/client-go/kubernetes/typed/core/v1"
 	"k8s.io/client-go/tools/cache"
 	"k8s.io/client-go/tools/record"
+	"fmt"
 )
 
 var (
@@ -193,8 +194,9 @@ func (c *Controller) syncGameServerSet(key string) error {
 		}
 	}
 
-	// TODO: update Status with counts
-	// TODO: add events on count change
+	if err := c.syncGameServerSetState(gss, list); err != nil {
+		return err
+	}
 
 	return nil
 }
@@ -235,10 +237,12 @@ func (c *Controller) syncMoreGameServers(gss *v1alpha1.GameServerSet, diff int32
 	c.logger.WithField("diff", diff).WithField("gameserverset", gss.ObjectMeta.Name).Info("Adding more gameservers")
 	for i := int32(0); i < diff; i++ {
 		gs := gss.GameServer()
-		_, err := c.gameServerGetter.GameServers(gs.Namespace).Create(gs)
+		gs, err := c.gameServerGetter.GameServers(gs.Namespace).Create(gs)
 		if err != nil {
 			return errors.Wrapf(err, "error creating gameserver for gameserverset %s", gss.ObjectMeta.Name)
 		}
+		// TODO: write test
+		c.recorder.Event(gs, corev1.EventTypeNormal, "SuccessfulCreate", fmt.Sprintf("Created GameServer: %s", gs.ObjectMeta.Name))
 	}
 
 	return nil
@@ -258,9 +262,33 @@ func (c *Controller) syncLessGameSevers(gss *v1alpha1.GameServerSet, list []*v1a
 			if err != nil {
 				return errors.Wrapf(err, "error deleting gameserver for gameserverset %s", gss.ObjectMeta.Name)
 			}
+			// TODO: write test
+			c.recorder.Event(gs, corev1.EventTypeNormal, "SuccessfulDelete", fmt.Sprintf("Deleted GameServer: %s", gs.ObjectMeta.Name))
 			count++
 		}
 	}
 
+	return nil
+}
+
+// syncGameServerSetState synchronises the GameServerSet State with active GameServer counts
+// TODO: write test
+func (c *Controller) syncGameServerSetState(gss *v1alpha1.GameServerSet, list []*v1alpha1.GameServer) error {
+	rc := int32(0)
+	for _, gs := range list {
+		if gs.Status.State == v1alpha1.Ready {
+			rc++
+		}
+	}
+
+	status := v1alpha1.GameServerSetStatus{Replicas: int32(len(list)), ReadyReplicas: rc}
+	if gss.Status != status {
+		gssCopy := gss.DeepCopy()
+		gssCopy.Status = status
+		_, err := c.gameServerSetGetter.GameServerSets(gss.ObjectMeta.Namespace).Update(gssCopy)
+		if err != nil {
+			return errors.Wrapf(err, "error updating status on GameServerSet %s", gss.ObjectMeta.Name)
+		}
+	}
 	return nil
 }
