@@ -1,0 +1,23 @@
+# Default values for agones.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+namespace: agones-system
+serviceaccount:
+  controller: agones-controller
+  sdk: agones-sdk
+
+image:
+  controller:
+    repository: gcr.io/agones-images/agones-controller
+    tag: 0.1
+    pullPolicy: IfNotPresent
+  sdk:
+    repository: gcr.io/agones-images/agones-sdk
+    tag: 0.1
+    alwaysPull: false
+
+minPort: 7000
+maxPort: 8000   
+
+
