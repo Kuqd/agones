@@ -41,6 +41,8 @@ spec:
         livenessProbe:
           httpGet:
             path: /live
-            port: 8080
-          initialDelaySeconds: 3
-          periodSeconds: 3
+            port: {{ .Values.healthCheck.http.port }}
+          initialDelaySeconds: {{ .Values.healthCheck.initialDelaySeconds }}
+          periodSeconds: {{ .Values.healthCheck.periodSeconds }}
+          failureThreshold: {{ .Values.healthCheck.failureThreshold }}
+          timeoutSeconds: {{ .Values.healthCheck.timeoutSeconds }}
