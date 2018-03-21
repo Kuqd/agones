@@ -20,4 +20,10 @@ image:
 minPort: 7000
 maxPort: 8000   
 
-
+healthCheck:
+  http:
+    port: 8080
+  initialDelaySeconds: 3
+  periodSeconds: 3
+  failureThreshold: 3
+  timeoutSeconds: 1

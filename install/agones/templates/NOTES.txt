@@ -1,8 +1,8 @@
 The Agones controller has been installed in the namespace {{ .Values.namespace }}.
 
-You can watch the status by running 'kubectl --namespace  {{ .Values.namespace }} get pods -o wide -w agones-controller'
+You can watch the status by running 'kubectl --namespace {{ .Values.namespace }} get pods -o wide -w {{ .Values.serviceaccount.controller }}'
 
-Once ready you can create your first GameServer using our examples :
+Once ready you can create your first GameServer using our examples:
 
 'kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/agones/master/examples/simple-udp/server/gameserver.yaml'
 
