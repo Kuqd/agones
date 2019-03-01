@@ -50,11 +50,11 @@
 #include <google/protobuf/unknown_field_set.h>
 #include "google/api/annotations.pb.h"
 // @@protoc_insertion_point(includes)
-#define PROTOBUF_INTERNAL_EXPORT_protobuf_sdk_2eproto AGONES_EXPORT
+#define PROTOBUF_INTERNAL_EXPORT_protobuf_sdk_2eproto 
 
 namespace protobuf_sdk_2eproto {
 // Internal implementation detail -- do not use these members.
-struct AGONES_EXPORT TableStruct {
+struct TableStruct {
   static const ::google::protobuf::internal::ParseTableField entries[];
   static const ::google::protobuf::internal::AuxillaryParseTableField aux[];
   static const ::google::protobuf::internal::ParseTable schema[10];
@@ -62,7 +62,7 @@ struct AGONES_EXPORT TableStruct {
   static const ::google::protobuf::internal::SerializationTable serialization_table[];
   static const ::google::protobuf::uint32 offsets[];
 };
-void AGONES_EXPORT AddDescriptors();
+void AddDescriptors();
 }  // namespace protobuf_sdk_2eproto
 namespace stable {
 namespace agones {
@@ -70,50 +70,50 @@ namespace dev {
 namespace sdk {
 class Empty;
 class EmptyDefaultTypeInternal;
-AGONES_EXPORT extern EmptyDefaultTypeInternal _Empty_default_instance_;
+extern EmptyDefaultTypeInternal _Empty_default_instance_;
 class GameServer;
 class GameServerDefaultTypeInternal;
-AGONES_EXPORT extern GameServerDefaultTypeInternal _GameServer_default_instance_;
+extern GameServerDefaultTypeInternal _GameServer_default_instance_;
 class GameServer_ObjectMeta;
 class GameServer_ObjectMetaDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_ObjectMetaDefaultTypeInternal _GameServer_ObjectMeta_default_instance_;
+extern GameServer_ObjectMetaDefaultTypeInternal _GameServer_ObjectMeta_default_instance_;
 class GameServer_ObjectMeta_AnnotationsEntry_DoNotUse;
 class GameServer_ObjectMeta_AnnotationsEntry_DoNotUseDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_ObjectMeta_AnnotationsEntry_DoNotUseDefaultTypeInternal _GameServer_ObjectMeta_AnnotationsEntry_DoNotUse_default_instance_;
+extern GameServer_ObjectMeta_AnnotationsEntry_DoNotUseDefaultTypeInternal _GameServer_ObjectMeta_AnnotationsEntry_DoNotUse_default_instance_;
 class GameServer_ObjectMeta_LabelsEntry_DoNotUse;
 class GameServer_ObjectMeta_LabelsEntry_DoNotUseDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_ObjectMeta_LabelsEntry_DoNotUseDefaultTypeInternal _GameServer_ObjectMeta_LabelsEntry_DoNotUse_default_instance_;
+extern GameServer_ObjectMeta_LabelsEntry_DoNotUseDefaultTypeInternal _GameServer_ObjectMeta_LabelsEntry_DoNotUse_default_instance_;
 class GameServer_Spec;
 class GameServer_SpecDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_SpecDefaultTypeInternal _GameServer_Spec_default_instance_;
+extern GameServer_SpecDefaultTypeInternal _GameServer_Spec_default_instance_;
 class GameServer_Spec_Health;
 class GameServer_Spec_HealthDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_Spec_HealthDefaultTypeInternal _GameServer_Spec_Health_default_instance_;
+extern GameServer_Spec_HealthDefaultTypeInternal _GameServer_Spec_Health_default_instance_;
 class GameServer_Status;
 class GameServer_StatusDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_StatusDefaultTypeInternal _GameServer_Status_default_instance_;
+extern GameServer_StatusDefaultTypeInternal _GameServer_Status_default_instance_;
 class GameServer_Status_Port;
 class GameServer_Status_PortDefaultTypeInternal;
-AGONES_EXPORT extern GameServer_Status_PortDefaultTypeInternal _GameServer_Status_Port_default_instance_;
+extern GameServer_Status_PortDefaultTypeInternal _GameServer_Status_Port_default_instance_;
 class KeyValue;
 class KeyValueDefaultTypeInternal;
-AGONES_EXPORT extern KeyValueDefaultTypeInternal _KeyValue_default_instance_;
+extern KeyValueDefaultTypeInternal _KeyValue_default_instance_;
 }  // namespace sdk
 }  // namespace dev
 }  // namespace agones
 }  // namespace stable
 namespace google {
 namespace protobuf {
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::Empty* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::Empty>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_ObjectMeta* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_ObjectMeta>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_ObjectMeta_AnnotationsEntry_DoNotUse* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_ObjectMeta_AnnotationsEntry_DoNotUse>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_ObjectMeta_LabelsEntry_DoNotUse* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_ObjectMeta_LabelsEntry_DoNotUse>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_Spec* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Spec>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_Spec_Health* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Spec_Health>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_Status* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Status>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::GameServer_Status_Port* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Status_Port>(Arena*);
-template<> AGONES_EXPORT ::stable::agones::dev::sdk::KeyValue* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::KeyValue>(Arena*);
+template<> ::stable::agones::dev::sdk::Empty* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::Empty>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_ObjectMeta* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_ObjectMeta>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_ObjectMeta_AnnotationsEntry_DoNotUse* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_ObjectMeta_AnnotationsEntry_DoNotUse>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_ObjectMeta_LabelsEntry_DoNotUse* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_ObjectMeta_LabelsEntry_DoNotUse>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_Spec* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Spec>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_Spec_Health* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Spec_Health>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_Status* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Status>(Arena*);
+template<> ::stable::agones::dev::sdk::GameServer_Status_Port* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::GameServer_Status_Port>(Arena*);
+template<> ::stable::agones::dev::sdk::KeyValue* Arena::CreateMaybeMessage<::stable::agones::dev::sdk::KeyValue>(Arena*);
 }  // namespace protobuf
 }  // namespace google
 namespace stable {
@@ -123,7 +123,7 @@ namespace sdk {
 
 // ===================================================================
 
-class AGONES_EXPORT Empty : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.Empty) */ {
+class Empty : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.Empty) */ {
  public:
   Empty();
   virtual ~Empty();
@@ -219,7 +219,7 @@ class AGONES_EXPORT Empty : public ::google::protobuf::Message /* @@protoc_inser
 };
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT KeyValue : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.KeyValue) */ {
+class KeyValue : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.KeyValue) */ {
  public:
   KeyValue();
   virtual ~KeyValue();
@@ -387,7 +387,7 @@ public:
 
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT GameServer_ObjectMeta : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.ObjectMeta) */ {
+class GameServer_ObjectMeta : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.ObjectMeta) */ {
  public:
   GameServer_ObjectMeta();
   virtual ~GameServer_ObjectMeta();
@@ -595,7 +595,7 @@ class AGONES_EXPORT GameServer_ObjectMeta : public ::google::protobuf::Message /
 };
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT GameServer_Spec_Health : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Spec.Health) */ {
+class GameServer_Spec_Health : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Spec.Health) */ {
  public:
   GameServer_Spec_Health();
   virtual ~GameServer_Spec_Health();
@@ -719,7 +719,7 @@ class AGONES_EXPORT GameServer_Spec_Health : public ::google::protobuf::Message 
 };
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT GameServer_Spec : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Spec) */ {
+class GameServer_Spec : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Spec) */ {
  public:
   GameServer_Spec();
   virtual ~GameServer_Spec();
@@ -830,7 +830,7 @@ class AGONES_EXPORT GameServer_Spec : public ::google::protobuf::Message /* @@pr
 };
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT GameServer_Status_Port : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Status.Port) */ {
+class GameServer_Status_Port : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Status.Port) */ {
  public:
   GameServer_Status_Port();
   virtual ~GameServer_Status_Port();
@@ -948,7 +948,7 @@ class AGONES_EXPORT GameServer_Status_Port : public ::google::protobuf::Message 
 };
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT GameServer_Status : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Status) */ {
+class GameServer_Status : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer.Status) */ {
  public:
   GameServer_Status();
   virtual ~GameServer_Status();
@@ -1089,7 +1089,7 @@ class AGONES_EXPORT GameServer_Status : public ::google::protobuf::Message /* @@
 };
 // -------------------------------------------------------------------
 
-class AGONES_EXPORT GameServer : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer) */ {
+class GameServer : public ::google::protobuf::Message /* @@protoc_insertion_point(class_definition:stable.agones.dev.sdk.GameServer) */ {
  public:
   GameServer();
   virtual ~GameServer();
