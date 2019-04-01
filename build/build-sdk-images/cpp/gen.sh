@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Copyright 2017 Google Inc. All Rights Reserved.
+# Copyright 2019 Google Inc. All Rights Reserved.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -17,29 +17,35 @@
 set -ex
 
 header() {
-    cat /go/src/agones.dev/agones/build/boilerplate.go.txt $1 >> /tmp/cpp/$1 && mv /tmp/cpp/$1 .
+    cat /go/src/agones.dev/agones/build/boilerplate.go.txt ./$1 >> $2/$1
 }
 
 googleapis=/go/src/agones.dev/agones/vendor/github.com/grpc-ecosystem/grpc-gateway/third_party/googleapis
+protoc_intermediate=/go/src/agones.dev/agones/sdks/cpp/.generated
+protoc_destination=/go/src/agones.dev/agones/sdks/cpp
+
+mkdir -p ${protoc_intermediate}
+mkdir -p ${protoc_destination}/src/agones
+mkdir -p ${protoc_destination}/src/google
+mkdir -p ${protoc_destination}/include/agones
+mkdir -p ${protoc_destination}/include/google/api
 
 cd /go/src/agones.dev/agones/sdks/cpp
 find -name '*.pb.*' -delete
-
 cd /go/src/agones.dev/agones
-protoc -I ${googleapis} -I . --grpc_out=./sdks/cpp --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` sdk.proto
-protoc -I ${googleapis} -I . --cpp_out=./sdks/cpp sdk.proto ${googleapis}/google/api/annotations.proto  ${googleapis}/google/api/http.proto
+protoc -I ${googleapis} -I . --grpc_out=${protoc_intermediate} --plugin=protoc-gen-grpc=`which grpc_cpp_plugin` sdk.proto
+protoc -I ${googleapis} -I . --cpp_out=dllexport_decl=AGONES_EXPORT:${protoc_intermediate} sdk.proto ${googleapis}/google/api/annotations.proto ${googleapis}/google/api/http.proto
 
-mkdir -p /tmp/cpp
+cd ${protoc_intermediate}
+header sdk.grpc.pb.cc ${protoc_destination}/src/agones
+header sdk.pb.cc ${protoc_destination}/src/agones
+header sdk.grpc.pb.h ${protoc_destination}/include/agones
+header sdk.pb.h ${protoc_destination}/include/agones
 
-cd ./sdks/cpp
-header sdk.pb.h
-header sdk.grpc.pb.cc
-header sdk.pb.cc
+cd ${protoc_intermediate}/google/api
+header annotations.pb.cc ${protoc_destination}/src/google
+header http.pb.cc ${protoc_destination}/src/google
+header annotations.pb.h ${protoc_destination}/include/google/api
+header http.pb.h ${protoc_destination}/include/google/api
 
-cd ./google/api/
-header annotations.pb.cc
-header annotations.pb.h
-header http.pb.cc
-header http.pb.h
-
-rm -r /tmp/cpp
+rm -r ${protoc_intermediate}
